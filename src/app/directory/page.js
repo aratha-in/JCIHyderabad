@@ -418,25 +418,25 @@ export default function Directory({ initialYear = "2027" }) {
                 Older years
               </button>
             </div>
-            <div className="flex flex-col items-center justify-center py-10 overflow-x-auto w-full min-w-[700px] border border-slate-200 rounded-3xl p-8 bg-white/40 backdrop-blur-md shadow-sm">
+            <div className="flex w-full min-w-0 flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white/40 p-3 py-5 shadow-sm backdrop-blur-md sm:rounded-3xl sm:p-8 sm:py-10">
 
             {firstTierMembers.length > 0 && (
               <section className="w-full" aria-label="Leadership level one">
-                <h2 className="mb-5 text-center text-xs font-bold uppercase tracking-widest text-jci-blue">President, Secretary &amp; Treasurer</h2>
-                <div className="flex flex-wrap justify-center gap-6">
+                <h2 className="mb-3 text-center text-[10px] font-bold uppercase tracking-widest text-jci-blue sm:mb-5 sm:text-xs">President, Secretary &amp; Treasurer</h2>
+                <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-6">
                   {firstTierMembers.map((member) => (
                     <MemberProfileLink
                       key={member.id}
                       member={member}
                       year={selectedTeamYear}
-                      className="glass-premium p-5 rounded-2xl cursor-pointer hover:border-jci-blue transition-all duration-300 w-56 h-60 text-center relative border border-slate-200/80 bg-white group shadow-sm flex flex-col items-center"
+                      className="glass-premium relative flex h-auto min-h-44 w-full cursor-pointer flex-col items-center rounded-xl border border-slate-200/80 bg-white p-3 text-center shadow-sm transition-all duration-300 hover:border-jci-blue sm:h-60 sm:w-56 sm:rounded-2xl sm:p-5"
                     >
-                      <div className="mb-2 h-16 w-16 flex-shrink-0">
-                        <MemberImage src={member.photo} alt={formatMemberName(member.name)} width={64} height={64} className="h-16 w-16 rounded-full object-cover" />
+                      <div className="mb-2 h-12 w-12 flex-shrink-0 sm:h-16 sm:w-16">
+                        <MemberImage src={member.photo} alt={formatMemberName(member.name)} width={64} height={64} className="h-12 w-12 rounded-full object-cover sm:h-16 sm:w-16" />
                       </div>
-                      <span className="text-[9px] font-semibold text-jci-blue tracking-widest uppercase font-satoshi">{member.dept}</span>
-                      <h3 className="font-display font-semibold text-lg text-jci-navy mt-2 line-clamp-2 group-hover:text-jci-blue transition-colors">{formatMemberName(member.name)}</h3>
-                      <p className="text-xs text-slate-500 mt-1 line-clamp-2">{member.role}</p>
+                      <span className="font-satoshi text-[8px] font-semibold uppercase tracking-widest text-jci-blue sm:text-[9px]">{member.dept}</span>
+                      <h3 className="mt-1 line-clamp-2 font-display text-sm font-semibold text-jci-navy transition-colors group-hover:text-jci-blue sm:mt-2 sm:text-lg">{formatMemberName(member.name)}</h3>
+                      <p className="mt-1 line-clamp-2 text-[10px] text-slate-500 sm:text-xs">{member.role}</p>
                     </MemberProfileLink>
                   ))}
                 </div>
@@ -444,35 +444,35 @@ export default function Directory({ initialYear = "2027" }) {
             )}
 
             {vicePresidents.length > 0 && (
-              <section className="mt-10 w-full" aria-label="Leadership level two">
-                <div className="mb-5 flex flex-wrap items-center justify-center gap-3">
+              <section className="mt-6 w-full sm:mt-10" aria-label="Leadership level two">
+                <div className="mb-3 flex flex-wrap items-center justify-center gap-2 sm:mb-5 sm:gap-3">
                   <h2 className="text-xs font-bold uppercase tracking-widest text-jci-blue">Vice Presidents</h2>
                   {directors.length > 0 && (
                     <button
                       type="button"
                       onClick={() => toggleNode("vps")}
                       aria-label={expandedNodes.vps ? "Collapse level two" : "Expand level two"}
-                      className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 cursor-pointer shadow-sm"
+                      className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm hover:text-slate-800"
                     >
                       {expandedNodes.vps ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                     </button>
                   )}
                 </div>
                 {expandedNodes.vps && (
-                  <div className="flex flex-wrap justify-center gap-6">
+                  <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-6">
                     {vicePresidents.map((member) => (
                       <MemberProfileLink
                         key={member.id}
                         member={member}
                         year={selectedTeamYear}
-                        className="glass-premium p-5 rounded-2xl cursor-pointer hover:border-jci-blue transition-all duration-300 w-56 h-60 text-center border border-slate-200 bg-white group shadow-sm flex flex-col items-center"
+                        className="glass-premium flex h-auto min-h-44 w-full cursor-pointer flex-col items-center rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm transition-all duration-300 hover:border-jci-blue sm:h-60 sm:w-56 sm:rounded-2xl sm:p-5"
                       >
-                        <div className="mb-2 h-16 w-16 flex-shrink-0">
-                          <MemberImage src={member.photo} alt={formatMemberName(member.name)} width={64} height={64} className="h-16 w-16 rounded-full object-cover" />
+                        <div className="mb-2 h-12 w-12 flex-shrink-0 sm:h-16 sm:w-16">
+                          <MemberImage src={member.photo} alt={formatMemberName(member.name)} width={64} height={64} className="h-12 w-12 rounded-full object-cover sm:h-16 sm:w-16" />
                         </div>
-                        <span className="text-[9px] font-semibold text-jci-blue tracking-widest uppercase font-satoshi">{member.dept}</span>
-                        <h3 className="font-display font-semibold text-lg text-jci-navy mt-2 line-clamp-2 group-hover:text-jci-blue transition-colors">{formatMemberName(member.name)}</h3>
-                        <p className="text-xs text-slate-500 mt-1 line-clamp-2">{member.role}</p>
+                        <span className="font-satoshi text-[8px] font-semibold uppercase tracking-widest text-jci-blue sm:text-[9px]">{member.dept}</span>
+                        <h3 className="mt-1 line-clamp-2 font-display text-sm font-semibold text-jci-navy transition-colors group-hover:text-jci-blue sm:mt-2 sm:text-lg">{formatMemberName(member.name)}</h3>
+                        <p className="mt-1 line-clamp-2 text-[10px] text-slate-500 sm:text-xs">{member.role}</p>
                       </MemberProfileLink>
                     ))}
                   </div>
@@ -481,32 +481,32 @@ export default function Directory({ initialYear = "2027" }) {
             )}
 
             {directors.length > 0 && (
-              <section className="mt-10 w-full" aria-label="Leadership level three">
-                <div className="mb-5 flex flex-wrap items-center justify-center gap-3">
+              <section className="mt-6 w-full sm:mt-10" aria-label="Leadership level three">
+                <div className="mb-3 flex flex-wrap items-center justify-center gap-2 sm:mb-5 sm:gap-3">
                   <h2 className="text-xs font-bold uppercase tracking-widest text-jci-teal">Directors</h2>
                   <button
                     type="button"
                     onClick={() => toggleNode("directors")}
                     aria-label={expandedNodes.directors ? "Collapse level three" : "Expand level three"}
-                    className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 cursor-pointer shadow-sm"
+                    className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm hover:text-slate-800"
                   >
                     {expandedNodes.directors ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                   </button>
                 </div>
                 {expandedNodes.directors && (
-                  <div className="flex flex-wrap justify-center gap-6">
+                  <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-6">
                     {directors.map((member) => (
                       <MemberProfileLink
                         key={member.id}
                         member={member}
                         year={selectedTeamYear}
-                        className="glass-premium p-5 rounded-2xl cursor-pointer hover:border-jci-teal transition-all duration-300 w-56 h-60 text-center bg-white border border-slate-200 shadow-sm group flex flex-col items-center"
+                        className="glass-premium flex h-auto min-h-44 w-full cursor-pointer flex-col items-center rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm transition-all duration-300 hover:border-jci-teal sm:h-60 sm:w-56 sm:rounded-2xl sm:p-5"
                       >
-                        <div className="mb-2 h-16 w-16 flex-shrink-0">
-                          <MemberImage src={member.photo} alt={formatMemberName(member.name)} width={64} height={64} className="h-16 w-16 rounded-full object-cover" />
+                        <div className="mb-2 h-12 w-12 flex-shrink-0 sm:h-16 sm:w-16">
+                          <MemberImage src={member.photo} alt={formatMemberName(member.name)} width={64} height={64} className="h-12 w-12 rounded-full object-cover sm:h-16 sm:w-16" />
                         </div>
-                        <h3 className="font-display font-semibold text-lg text-slate-900 line-clamp-2 group-hover:text-jci-teal transition-colors">{formatMemberName(member.name)}</h3>
-                        <p className="text-xs text-slate-500 mt-1 line-clamp-2">{member.role}</p>
+                        <h3 className="mt-1 line-clamp-2 font-display text-sm font-semibold text-slate-900 transition-colors group-hover:text-jci-teal sm:mt-2 sm:text-lg">{formatMemberName(member.name)}</h3>
+                        <p className="mt-1 line-clamp-2 text-[10px] text-slate-500 sm:text-xs">{member.role}</p>
                       </MemberProfileLink>
                     ))}
                   </div>

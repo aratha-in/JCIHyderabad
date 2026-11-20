@@ -258,10 +258,10 @@ export default function Home() {
 
               <div className="mt-6">
                 <Link
-                  href="/leaders"
+                  href="/directory"
                   className="inline-flex items-center gap-2 text-jci-teal hover:text-white font-bold text-sm transition-colors font-satoshi"
                 >
-                  View Leadership Directory
+                  View Members
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

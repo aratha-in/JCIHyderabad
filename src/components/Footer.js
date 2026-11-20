@@ -96,6 +96,7 @@ export default function Footer() {
                 { name: "Home", href: "/" },
                 { name: "Directory", href: "/directory" },
                 { name: "Our Leaders", href: "/leaders" },
+                { name: "Gallery", href: "/gallery" },
                 { name: "Wall of Fame", href: "/wall-of-fame" },
                 { name: "Events Portal", href: "/events" },
                 { name: "Sponsors & Partners", href: "/partners" },
@@ -179,4 +180,3 @@ export default function Footer() {
     </footer>
   );
 }
-

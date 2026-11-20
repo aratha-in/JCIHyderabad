@@ -10,8 +10,9 @@ export default function Header() {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "DIR", path: "/directory" },
+    { name: "Members", path: "/directory" },
     { name: "Leaders", path: "/leaders" },
+    { name: "Gallery", path: "/gallery" },
     { name: "Wall of Fame", path: "/wall-of-fame" },
     { name: "Events", path: "/events" },
     { name: "Partners", path: "/partners" },
@@ -63,6 +64,8 @@ export default function Header() {
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-jci-navy hover:bg-slate-100 transition-colors cursor-pointer"
           aria-label="Toggle Menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -70,14 +73,12 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed inset-0 top-[73px] bg-white/95 backdrop-blur-lg z-40 transition-transform duration-300 ease-in-out lg:hidden border-t border-slate-200/50 ${isOpen ? "translate-x-0" : "translate-x-full"
+        id="mobile-navigation"
+        className={`absolute inset-x-0 top-full h-[calc(100dvh-73px)] overflow-y-auto bg-white z-40 transition-transform duration-300 ease-in-out lg:hidden border-t border-slate-200/50 ${isOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
-        <div className="flex flex-col p-8 gap-6 h-full justify-between">
+        <div className="flex min-h-full flex-col gap-6 p-6">
           <div className="flex flex-col gap-6">
-            <div className="mb-2">
-              <img src="/jci_hyderabad.png" alt="JCI Hyderabad Logo" className="h-8 w-auto object-contain" />
-            </div>
             {navLinks.map((link) => {
               const isActive = pathname === link.path;
               return (
@@ -94,7 +95,7 @@ export default function Header() {
             })}
           </div>
 
-          <div className="flex flex-col gap-4 mb-16">
+          <div className="mt-auto flex flex-col gap-4 pb-4">
             <Link
               href="/join"
               onClick={() => setIsOpen(false)}
