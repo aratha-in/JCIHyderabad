@@ -42,6 +42,7 @@ export default function Leaders() {
       milestones: ["Achieved 100% Audit Transparency", "Strategic Asset Allocation Lead"]
     },
   ];
+  const currentPresident = board[0];
 
   return (
     <div className="bg-[#F8FAFC] text-slate-800 min-h-screen relative overflow-hidden py-16">
@@ -59,8 +60,39 @@ export default function Leaders() {
             Chapter Leadership
           </h1>
           <p className="text-slate-500 font-inter">
-            Meet the dedicated executive officers and past presidents who steer JCI Hyderabad toward excellence. Open a profile to learn more.
+            Meet the current president, executive officers, and past presidents who steer JCI Hyderabad toward excellence. Open a profile to learn more.
           </p>
+        </div>
+
+        {/* Current Presidents */}
+        <div className="mb-16">
+          <h2 className="font-display font-semibold text-2xl md:text-3xl text-jci-navy mb-8 text-center flex items-center justify-center gap-3 uppercase">
+            <ShieldCheck className="w-8 h-8 text-jci-blue" />
+            Current Presidents
+          </h2>
+          <div className="mx-auto max-w-md">
+            <Link
+              href={getMemberProfileHref(currentPresident, "2027")}
+              className="glass-premium rounded-3xl p-8 border border-slate-200/85 bg-white hover:border-jci-blue/40 cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"
+            >
+              <MemberImage
+                src={currentPresident.photo}
+                alt={currentPresident.name}
+                width={80}
+                height={80}
+                className="h-20 w-20 rounded-2xl object-cover"
+              />
+              <h3 className="mt-4 font-display font-semibold text-xl text-jci-navy group-hover:text-jci-blue transition-colors">
+                {currentPresident.name}
+              </h3>
+              <p className="mt-1 text-[11px] text-slate-500 font-semibold uppercase tracking-wide font-satoshi">
+                {currentPresident.role}
+              </p>
+              <span className="mt-6 border-t border-slate-100 pt-4 text-[10px] text-jci-blue font-semibold uppercase font-satoshi">
+                View Full Profile →
+              </span>
+            </Link>
+          </div>
         </div>
 
         {/* Executive Board */}
@@ -70,7 +102,7 @@ export default function Leaders() {
             Executive Committee (2027)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {board.map((member, idx) => (
+            {board.slice(1).map((member, idx) => (
               <Link
                 key={idx}
                 href={getMemberProfileHref(member, "2027")}
@@ -105,7 +137,7 @@ export default function Leaders() {
             Legacy of Past Presidents
           </h2>
           <div className="relative border-l border-slate-200 ml-4 md:ml-32 flex flex-col gap-8">
-            {pastPresidents.map((pres, idx) => (
+            {pastPresidents.filter((pres) => pres.year !== "2027").map((pres, idx) => (
               <div key={idx} className="relative pl-8 md:pl-12 group">
                 {/* Year display left of timeline on md screen */}
                 <div className="absolute top-0.5 left-0 md:-left-32 md:w-24 text-left md:text-right font-display font-semibold text-lg text-jci-blue">

@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search, Mail, Phone, ShieldAlert, ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
 import pastPresidents from "../../data/pastPresidents.js";
-import { getMemberProfileHref } from "../../data/leadershipTeams.js";
+import { getMemberProfileHref, leadershipTeams as profileLeadershipTeams } from "../../data/leadershipTeams.js";
 import MemberImage from "../../components/MemberImage.js";
 
 function formatMemberName(name) {
@@ -23,11 +24,15 @@ function MemberProfileLink({ member, year, className, children }) {
   );
 }
 
-export default function Directory() {
+export default function Directory({ initialYear = "2027" }) {
+  const initialYearIndex = Object.keys(profileLeadershipTeams)
+    .sort((a, b) => Number(b) - Number(a))
+    .indexOf(initialYear);
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDept, setSelectedDept] = useState("All");
-  const [selectedTeamYear, setSelectedTeamYear] = useState("2027");
-  const [teamYearPage, setTeamYearPage] = useState(0);
+  const [selectedTeamYear] = useState(initialYear);
+  const [teamYearPage, setTeamYearPage] = useState(Math.floor(Math.max(initialYearIndex, 0) / 12));
   const [viewMode, setViewMode] = useState("tree"); // "tree" or "grid"
   const [expandedNodes, setExpandedNodes] = useState({
     president: true,
@@ -35,14 +40,14 @@ export default function Directory() {
     directors: true
   });
 
-  const departments = ["All", "Executive Board", "Trainers & Speakers", "Business & Trade", "Public Relations", "Management", "Community Development", "Internationalism", "Growth & Development", "Past Presidents"];
+  const departments = ["All", "Current Presidents", "Executive Board", "Trainers & Speakers", "Business & Trade", "Public Relations", "Management", "Community Development", "Internationalism", "Growth & Development", "Past Presidents"];
 
   const members = [
     {
       id: "pres-1",
       name: "Jc. Chetan Kumar Tiruvaipati",
       role: "LOM President (2027)",
-      dept: "Executive Board",
+      dept: "Current Presidents",
       reportsTo: null,
       level: "president",
     },
@@ -272,7 +277,10 @@ export default function Directory() {
 
   const directoryMembers = [
     ...hierarchyMembers.map((member) => ({ ...member, year: selectedTeamYear })),
-    ...pastPresidents.filter((president) => president.year !== selectedTeamYear).map((president, index) => ({
+    ...(selectedTeamYear !== "2027"
+      ? leadershipTeams["2027"].filter((member) => member.level === "president").map((member) => ({ ...member, year: "2027" }))
+      : []),
+    ...pastPresidents.filter((president) => president.year !== selectedTeamYear && president.year !== "2027").map((president, index) => ({
       id: `past-president-${president.year}-${index}`,
       name: president.name,
       role: president.term,
@@ -389,8 +397,7 @@ export default function Directory() {
                     role="tab"
                     aria-selected={selectedTeamYear === year}
                     onClick={() => {
-                      setSelectedTeamYear(year);
-                      setExpandedNodes({ president: true, vps: true, directors: true });
+                      router.push(`/directory/${year}`);
                     }}
                     className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
                       selectedTeamYear === year

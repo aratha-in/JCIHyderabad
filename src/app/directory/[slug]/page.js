@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { Award, ArrowLeft, ExternalLink, Mail, Phone } from "lucide-react";
 import ProfileSocialLinks from "../../../components/ProfileSocialLinks.js";
 import MemberImage from "../../../components/MemberImage.js";
-import { memberProfiles } from "../../../data/leadershipTeams.js";
+import { memberProfiles, leadershipTeams } from "../../../data/leadershipTeams.js";
+import Directory from "../page.js";
 
 function formatMemberName(name) {
   return name
@@ -13,11 +14,18 @@ function formatMemberName(name) {
 }
 
 export function generateStaticParams() {
-  return memberProfiles.map(({ slug }) => ({ slug }));
+  return [
+    ...memberProfiles.map(({ slug }) => ({ slug })),
+    ...Object.keys(leadershipTeams).map((slug) => ({ slug })),
+  ];
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
+  if (Object.hasOwn(leadershipTeams, slug)) {
+    return { title: `${slug} Leadership Team | JCI Hyderabad` };
+  }
+
   const profile = memberProfiles.find((member) => member.slug === slug);
 
   return {
@@ -27,6 +35,10 @@ export async function generateMetadata({ params }) {
 
 export default async function MemberProfilePage({ params }) {
   const { slug } = await params;
+  if (Object.hasOwn(leadershipTeams, slug)) {
+    return <Directory key={slug} initialYear={slug} />;
+  }
+
   const member = memberProfiles.find((profile) => profile.slug === slug);
 
   if (!member) {
@@ -92,6 +104,20 @@ export default async function MemberProfilePage({ params }) {
             <section className="mt-8">
               <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400">Biography</h2>
               <p className="mt-3 leading-relaxed text-slate-600">{member.bio}</p>
+            </section>
+          )}
+
+          {member.highlights?.length > 0 && (
+            <section className="mt-8">
+              <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400">Presidential Highlights</h2>
+              <ul className="mt-3 flex flex-col gap-3">
+                {member.highlights.map((highlight) => (
+                  <li key={highlight} className="flex items-start gap-3 text-sm leading-relaxed text-slate-600">
+                    <Award className="mt-0.5 h-4 w-4 flex-shrink-0 text-jci-teal" />
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
 

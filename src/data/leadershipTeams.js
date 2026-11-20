@@ -1,7 +1,7 @@
 import pastPresidents from "./pastPresidents.js";
 
 const team2027 = [
-  { id: "pres-1", name: "Jc. Chetan Kumar Tiruvaipati", role: "LOM President (2027)", dept: "Executive Board", level: "president" },
+  { id: "pres-1", name: "Jc. Chetan Kumar Tiruvaipati", role: "LOM President (2027)", dept: "Current Presidents", level: "president" },
   { id: "sec-1", name: "JC VISHWANTH", role: "Secretary", dept: "Executive Board", reportsTo: "pres-1", level: "pst" },
   { id: "treas-1", name: "Jc. Karthik Rao", role: "Treasurer", dept: "Executive Board", email: "treasurer@jcihyderabad.org", phone: "+91 98765 43214", reportsTo: "pres-1", level: "pst", bio: "Chartered Accountant. Overlooking budget controls, financial audit structures, corporate compliance, and event underwriting.", achievements: ["Honors in Corporate Finance", "JCI Growth Catalyst 2025"] },
   { id: "vp-train", name: "Jc. Sneha Reddy", role: "Vice President (Training)", dept: "Trainers & Speakers", email: "training@jcihyderabad.org", phone: "+91 98765 43211", reportsTo: "pres-1", level: "vps", bio: "Professional soft-skills trainer and executive speech coach. Managing chapter-wide training events and leadership academies.", achievements: ["JCI Authorised Speech Evaluator", "Delivered 200+ hours of community sessions"] },
