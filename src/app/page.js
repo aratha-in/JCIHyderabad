@@ -220,9 +220,9 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
                   <Users className="w-20 h-20 text-slate-700" />
                   <div className="absolute bottom-8 left-8 right-8 z-20 text-left">
-                    <h4 className="font-display font-semibold text-2xl tracking-wide text-white">Jc. Ganesh Nagu</h4>
+                    <h4 className="font-display font-semibold text-2xl tracking-wide text-white">Jc. Chetan Kumar Tiruvaipati</h4>
                     <p className="text-xs text-jci-teal font-semibold uppercase tracking-widest mt-1 font-satoshi">
-                      LOM President, JCI Hyderabad (2026)
+                      LOM President, JCI Hyderabad (2027)
                     </p>
                   </div>
                 </div>
@@ -231,7 +231,7 @@ export default function Home() {
 
             <div className="lg:col-span-7 flex flex-col gap-6 text-left">
               <span className="text-jci-teal font-semibold text-xs uppercase tracking-widest font-satoshi">
-                President's Message
+                2026 President&apos;s Message
               </span>
               <h2 className="font-display font-semibold text-4xl md:text-5xl text-white leading-tight uppercase">
                 "Leading with Legacy, <br />
